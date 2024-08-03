@@ -1,0 +1,19 @@
+<svg width="24" height="24" version="1.1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+ <style id="current-color-scheme" type="text/css">.ColorScheme-Text {
+        color:#232629;}</style>
+ <g transform="translate(0 -.095714)" class="ColorScheme-Text" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+  <ellipse id="_Path_" cx="5.3633" cy="16.263" rx=".47677" ry=".4914" class="ColorScheme-Text" color="currentColor" stroke-width="1.2"/>
+  <g transform="translate(0 .16672)" class="ColorScheme-Text" color="currentColor" stroke-width="1.2">
+   <path d="m2.2786 8.0991h2.681v2.5347h-2.681z" />
+   <path d="m4.9596 8.0991h2.6811v2.5347h-2.6811z" />
+   <path d="m7.6407 8.0991h2.6811v2.5347h-2.6811z" />
+   <path d="m10.322 8.0991h2.681v2.5347h-2.681z" />
+   <path d="m4.9596 5.5644h2.6811v2.5347h-2.6811z" />
+   <path d="m7.6407 5.5644h2.6811v2.5347h-2.6811z" />
+   <path d="m10.322 5.5644h2.681v2.5347h-2.681z" />
+   <path d="m10.322 3.0297h2.681v2.5347h-2.681z" />
+   <path d="m13.003 8.0991h2.6811v2.5347h-2.6811z" />
+  </g>
+  <path d="m22.966 12.073s-1.6687-1.1007-2.8606-0.4914a3.2897 3.3907 0 0 0-1.4303-2.457 3.4709 3.5774 0 0 0-0.55306 2.8305 0.95355 0.9828 0 0 1-0.95355 1.1007h-16.134c0 6.1425 3.6521 7.8624 7.1516 7.8624a13.121 13.523 0 0 0 11.5-6.8796 4.4626 4.5995 0 0 0 3.2802-1.9656z" class="ColorScheme-Text" color="currentColor" stroke-width="1.5"/>
+ </g>
+</svg>

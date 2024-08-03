@@ -1,0 +1,29 @@
+{
+    "KPackageStructure": "Plasma/Applet",
+    "KPlugin": {
+        "Authors": [
+            {
+                "Name": "Brilliant Nurzaman",
+                "Email": ""
+            }
+        ],
+        "BugReportUrl": "https://github.com/imoize/plasma-dockio/issues",
+        "Category": "System Information",
+        "Description": "Plasma widget to control docker containers",
+        "EnabledByDefault": true,
+        "FormFactors": [
+            "desktop"
+        ],
+        "Icon": "dockio-icon",
+        "Id": "org.kde.plasma.dockio",
+        "License": "GPL-3.0",
+        "Name": "Dockio",
+        "Version": "0.0.1",
+        "Website": "https://github.com/imoize/plasma-dockio"
+    },
+    "X-KDE-Keywords": "docker,container",
+    "X-Plasma-API-Minimum-Version": "6.0",
+    "X-Plasma-NotificationArea": "true",
+    "X-Plasma-NotificationAreaCategory": "SystemServices"
+}
+
