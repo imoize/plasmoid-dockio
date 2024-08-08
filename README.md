@@ -3,7 +3,7 @@
 Control your docker containers from plasma applet.
 
 > [!NOTE]
-> This extension use custom icon, you need to copy contents from icons folder to your theme or local icons folder.
+> This extension use custom icon, you need to [copy](#icons) contents from icons folder to your theme or local icons folder.
 >
 > To use the plasmoid widget effectively, it is essential to run Docker without requiring sudo privileges.
 
@@ -23,7 +23,7 @@ Control your docker containers from plasma applet.
 
 ### KDE Store
 
-[Store link](https://www.pling.com/p/2185626)
+[Store link](https://store.kde.org/p/2185626)
 
 ### Build it Yourself
 
