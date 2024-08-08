@@ -35,8 +35,6 @@ PlasmoidItem {
         Utils.notificationInstall();
         if (cfg.fetchOnStart) {
         startupTimer.start();
-        } else {
-            Utils.initState();
         }
     }
 
@@ -46,15 +44,6 @@ PlasmoidItem {
 
     DockerCommand {
         id: dockerCommand
-    }
-
-    Timer {
-        id: timer
-        interval: cfg.pollApiInterval * 1000
-        repeat: true
-        onTriggered: {
-            Utils.commands["statDocker"].run();
-        }
     }
 
     Notification {
@@ -67,8 +56,17 @@ PlasmoidItem {
     }
 
     Timer {
-        id: startupTimer
+        id: timer
+        interval: cfg.pollApiInterval * 1000
+        repeat: true
+        running: true
+        onTriggered: {
+            Utils.commands["statDocker"].run();
+        }
+    }
 
+    Timer {
+        id: startupTimer
         interval: 2000
         onTriggered: {
             Utils.initState();
