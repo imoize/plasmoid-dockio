@@ -11,31 +11,22 @@ MouseArea {
     property bool wasExpanded: false
     acceptedButtons: Qt.LeftButton | Qt.MiddleButton
     hoverEnabled: true
-    onPressed: wasExpanded = expanded
+    onPressed: (mouse) => {
+        wasExpanded = main.expanded
+    }
     onClicked: (mouse) => {
         if(mouse.button == Qt.MiddleButton) {
             Utils.commands["statDocker"].run();
         } else {
-            expanded = !wasExpanded;
-            
-            if(expanded && cfg.fetchOnExpand) {
+            main.expanded = !wasExpanded;
+            if(main.expanded  && cfg.fetchOnExpand) {
                 Utils.initState();
                 main.pop();
             }
             main.pop();
         }
     }
-    Keys.onPressed: event => {
-        switch (event.key) {
-        case Qt.Key_Space:
-        case Qt.Key_Enter:
-        case Qt.Key_Return:
-        case Qt.Key_Select:
-            Plasmoid.activated();
-            event.accepted = true;
-            break;
-        }
-    }
+
     Kirigami.Icon {
         id: updateIcon
         anchors.fill: parent
