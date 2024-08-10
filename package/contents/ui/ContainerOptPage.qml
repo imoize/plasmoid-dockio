@@ -18,7 +18,7 @@ ColumnLayout {
     property alias containerInspectText: containerInspectText
 
     property PlasmaExtras.PlasmoidHeading header: PlasmaExtras.PlasmoidHeading {
-        background: null
+        background.visible: false
 
         RowLayout {
             id: statsToolbar
