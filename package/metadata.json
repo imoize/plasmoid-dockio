@@ -18,7 +18,7 @@
         "Id": "org.kde.plasma.dockio",
         "License": "GPL-3.0",
         "Name": "Dockio",
-        "Version": "0.0.3",
+        "Version": "0.0.4",
         "Website": "https://github.com/imoize/plasma-dockio"
     },
     "X-KDE-Keywords": "docker,container",
