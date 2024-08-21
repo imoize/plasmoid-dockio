@@ -12,7 +12,6 @@ ColumnLayout{
 
     property alias view: containerListView
     property alias model: containerListView.model
-    property string filterText: ""
 
     Kirigami.InlineMessage {
         id: errorMessage
