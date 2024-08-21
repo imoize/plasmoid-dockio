@@ -12,7 +12,6 @@ ColumnLayout{
 
     property alias view: containerListView
     property alias model: containerListView.model
-    property alias progressBar: progressBar
     property string filterText: ""
 
     Kirigami.InlineMessage {
@@ -30,6 +29,8 @@ ColumnLayout{
             }
         }
     }
+
+    // Experimental: Progress Bar
     QQC2.ProgressBar {
         id: progressBar
         visible: cfg.showProgressBar && dockerEnable && containerListView.count !== 0
@@ -123,18 +124,15 @@ ColumnLayout{
         }
     }
 
-    DockerCommand {
-        id: dockercommand
-    }
     Connections {
-        target: dockercommand
-        function onUpdateProgressBar() {
-            progressBar.value = 0 // Reset progress bar value to 0
-            progressBarAnimation.stop(); // Stop progress bar animation
-            progressBarAnimation.start(); // Start progress bar animation
+        target: main
+        function onStartProgressBar() {
+            progressBarAnimation.stop(); // Experimental: Stop progress bar animation
+            progressBar.value = 0 // Experimental: Reset progress bar value to 0
+            progressBarAnimation.start(); // Experimental: Start progress bar animation
             }
         function onStopProgressBar() {
-            progressBarAnimation.stop(); // Stop progress bar animation
+            progressBarAnimation.stop();
             progressBar.value = 0 
         }
     }

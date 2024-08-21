@@ -22,9 +22,12 @@ PlasmoidItem {
     property string statusIcon: ""
     property string notifTitle: ""
     property string notifText: ""
-    property var delayCallback: function() {
-    }
+    property var delayCallback: function() {}
+    property int progressBar: 0 // Experimental: Reference to the progress bar
+
     signal pop()
+    signal startProgressBar() // Experimental: Signal to start progress bar
+    signal stopProgressBar() // Experimental: Signal to stop progress bar
 
     switchWidth: Kirigami.Units.gridUnit * 5
     switchHeight: Kirigami.Units.gridUnit * 5
@@ -89,6 +92,28 @@ PlasmoidItem {
     function delayTimerCallback(callback) {
         delayCallback = callback;
         delayTimer.start();
+    }
+
+    // Experimental: Kill progress bar
+    function killProgressBar() {
+        stopProgressBar();
+    }
+
+    Timer {
+        id: fetchTimer
+        interval: cfg.fetchContainerInterval * 1000
+        repeat: true
+        running: dockerEnable
+        onTriggered: {
+            if (dockerEnable) {
+                dockerCommand.fetchContainers.get()
+                if (cfg.showProgressBar) {
+                    startProgressBar() // Experimental: Emit the signal to start progress bar
+                }
+            } else {
+                stopProgressBar()
+            }
+        }
     }
 
     Plasmoid.contextualActions: [

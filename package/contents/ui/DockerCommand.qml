@@ -4,33 +4,7 @@ import org.kde.plasma.plasma5support as Plasma5Support
 Item {
     id: dockerCommand
     property alias executable: executable
-    property alias fetchTimer: fetchTimer
     property alias fetchContainers: fetchContainers
-    property int progressBar: 0 // Reference to the progress bar
-
-    signal updateProgressBar() // Signal to update the progress bar
-    signal stopProgressBar() // Signal to stop the progress bar
-
-    function killProgressBar() {
-        stopProgressBar();
-    }
-
-    Timer {
-        id: fetchTimer
-        interval: cfg.fetchContainerInterval * 1000
-        repeat: true
-        running: dockerEnable
-        onTriggered: {
-            if (dockerEnable) {
-                fetchContainers.get()
-                if (cfg.showProgressBar) {
-                    updateProgressBar() // Emit the signal to update the progress bar
-                }
-            } else {
-                stopProgressBar()
-            }
-        }
-    }
 
     Plasma5Support.DataSource {
         id: fetchContainers
@@ -107,7 +81,6 @@ Item {
             for( var proc in listeners ){
                 delete listeners[proc]
                 disconnectSource(proc)
-                killProgressBar()
             }
         }
 

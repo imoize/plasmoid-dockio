@@ -1,6 +1,6 @@
 function endAll() {
-    dockerCommand.fetchTimer.stop();
-    dockerCommand.killProgressBar();
+    fetchTimer.stop();
+    main.killProgressBar();
     dockerCommand.executable.endAll();
 }
 
