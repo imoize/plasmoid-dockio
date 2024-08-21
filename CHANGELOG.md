@@ -1,4 +1,16 @@
 
+## [v0.0.4] - 2024-08-21
+### :bug: Bug Fixes
+- [`269655c`](https://github.com/imoize/plasma-dockio/commit/269655c2a335828d629cc3bd09da0b919e45fd20) - Resolve issue where fetch container timer might be triggered twice *(commit by [@imoize](https://github.com/imoize))*
+
+### :recycle: Refactors
+- [`ba134fc`](https://github.com/imoize/plasma-dockio/commit/ba134fc134c8b5a39006d6dad8c8a695259a5871) - Remove unused import *(commit by [@imoize](https://github.com/imoize))*
+- [`a35c04a`](https://github.com/imoize/plasma-dockio/commit/a35c04a148ae23bd417bebf57289529961de9381) - Remove unused property *(commit by [@imoize](https://github.com/imoize))*
+
+### :wrench: Chores
+- [`8d6f4e4`](https://github.com/imoize/plasma-dockio/commit/8d6f4e4b863a1b5ea8f36a397b5cb9edbce426d4) - Bump to v0.0.4 *(commit by [@imoize](https://github.com/imoize))*
+
+
 ## [v0.0.3] - 2024-08-10
 ### :bug: Bug Fixes
 - [`0cf0c86`](https://github.com/imoize/plasma-dockio/commit/0cf0c864b6a4de3724c871f577acfdb2957d266d) - Fix prevent null reference errors when navigating away and back *(commit by [@imoize](https://github.com/imoize))*
@@ -16,3 +28,4 @@
 
 [v0.0.2]: https://github.com/imoize/plasma-dockio/compare/v0.0.1...v0.0.2
 [v0.0.3]: https://github.com/imoize/plasma-dockio/compare/v0.0.2...v0.0.3
+[v0.0.4]: https://github.com/imoize/plasma-dockio/compare/v0.0.3...v0.0.4
