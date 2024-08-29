@@ -1,8 +1,8 @@
 import QtQuick
 import QtQuick.Layouts
+import QtQuick.Controls as QQC2
 import org.kde.plasma.plasmoid
 import org.kde.ksvg as KSvg
-import QtQuick.Controls as QQC2
 import org.kde.kirigami as Kirigami
 import org.kde.plasma.components as PlasmaComponents
 import "../Utils.js" as Utils
@@ -65,6 +65,7 @@ PlasmaComponents.ItemDelegate {
                     text: containerState + " - " + containerStatus
                     Layout.fillWidth: true
                     elide: Text.ElideRight
+                    font.capitalization: Font.Capitalize
                     font.pixelSize: Kirigami.Theme.smallFont.pixelSize
                     color: {
                         if ( containerState === "exited" ) {
