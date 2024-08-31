@@ -19,6 +19,14 @@ Control your docker containers from plasma applet.
 ![Main Page](./image/screenshot1.png)
 ![Opt Page](./image/screenshot2.png)
 
+## Package Dependencies
+
+### Arch
+
+```bash
+sudo pacman -S curl kdeplasma-addons
+```
+
 ## Installation
 
 ### KDE Store
