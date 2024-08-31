@@ -7,7 +7,7 @@
                 "Email": ""
             }
         ],
-        "BugReportUrl": "https://github.com/imoize/plasma-dockio/issues",
+        "BugReportUrl": "https://github.com/imoize/plasmoid-dockio/issues",
         "Category": "System Information",
         "Description": "Plasma widget to control docker containers",
         "EnabledByDefault": true,
@@ -19,7 +19,7 @@
         "License": "GPL-3.0",
         "Name": "Dockio",
         "Version": "0.1.1",
-        "Website": "https://github.com/imoize/plasma-dockio"
+        "Website": "https://github.com/imoize/plasmoid-dockio"
     },
     "X-KDE-Keywords": "docker,container",
     "X-Plasma-API-Minimum-Version": "6.0",
