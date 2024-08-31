@@ -89,13 +89,6 @@ ColumnLayout{
             delegate: ContainerItemDelegate {
                 showSeparator: index !== 0
                 width: containerListView.width
-
-                Binding {
-                    target: containerListView
-                    when: hovered
-                    property: "currentIndex"; value: index
-                    restoreMode: Binding.RestoreBinding
-                }
             }
 
             Loader {
