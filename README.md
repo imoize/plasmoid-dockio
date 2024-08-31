@@ -36,7 +36,7 @@ sudo pacman -S curl kdeplasma-addons
 ### Build it Yourself
 
 ```bash
-git clone https://github.com/imoize/plasma-dockio.git dockio
+git clone https://github.com/imoize/plasmoid-dockio.git dockio
 cd dockio
 kpackagetool6 -t Plasma/Applet -i package
 ```
