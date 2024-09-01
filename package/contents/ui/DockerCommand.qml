@@ -5,6 +5,7 @@ Item {
     id: dockerCommand
     property alias executable: executable
     property alias fetchContainers: fetchContainers
+    property var infoArray: ({})
 
     Plasma5Support.DataSource {
         id: fetchContainers
@@ -12,40 +13,55 @@ Item {
         connectedSources: []
         interval: {
             if (dockerEnable) {
-                1000
+                1000;
             } else {
-                0
+                0;
             }
         }
-        
+
         onNewData: (sourceName, data) => {
-            var stdout = data.stdout
-            containerModel.clear();
-            const containers = JSON.parse(stdout);
+            var stdout = data.stdout;
+            var cmd = sourceName.split(" ")[0];
 
-            containers.forEach(container => {
-                const containerName = container.Names[0].substring(1)
-                const containerId = container.Id;
-                const containerImage = container.Image;
-                const containerState = container.State;
-                const containerStatus = container.Status;
-                const containerInfo = container;
-
-                containerModel.append({
-                    "containerName": containerName,
-                    "containerId": containerId,
-                    "containerImage": containerImage,
-                    "containerState": containerState,
-                    "containerStatus": containerStatus,
-                    "containerInfo": JSON.stringify(containerInfo, null, 2)
-                });
-            });
-            disconnectSource(sourceName)
+            if (cmd === "curl") {
+                if (sourceName.includes("containers/json")) {
+                    containerModel.clear();
+                    const containers = JSON.parse(stdout);
+                    containers.forEach(container => {
+                        const containerName = container.Names[0].substring(1);
+                        const containerId = container.Id;
+                        const containerImage = container.Image;
+                        const containerState = container.State;
+                        const containerStatus = container.Status;
+                        const containerInfo = container;
+                        containerModel.append({
+                            "containerName": containerName,
+                            "containerId": containerId,
+                            "containerImage": containerImage,
+                            "containerState": containerState,
+                            "containerStatus": containerStatus,
+                            "containerInfo": JSON.stringify(containerInfo, null, 2)
+                        });
+                    });
+                } else if (sourceName.includes("info")) {
+                    const info = JSON.parse(stdout);
+                    infoArray = {
+                        "Containers": info.Containers,
+                        "ContainersRunning": info.ContainersRunning,
+                        "ContainersPaused": info.ContainersPaused,
+                        "ContainersStopped": info.ContainersStopped,
+                        "Images": info.Images
+                    };
+                }
+            }
+            disconnectSource(sourceName);
         }
 
         function get() {
-            var cmd = "curl --unix-socket /var/run/docker.sock http://localhost/containers/json?all=true"
-            connectSource(cmd)
+            var getContainers = "curl --unix-socket /var/run/docker.sock http://localhost/containers/json?all=true";
+            var getInfo = "curl --unix-socket /var/run/docker.sock http://localhost/info";
+            connectSource(getContainers);
+            connectSource(getInfo);
         }
     }
 
@@ -55,8 +71,7 @@ Item {
         connectedSources: []
         onNewData: (sourceName, data) => {
             var cmd = sourceName
-            // var out = data["stdout"].replace(/\u001b\[[0-9;]*[m|K]/g, '')
-            var out = data["stdout"]
+            var out = data["stdout"].replace(/\u001b\[[0-9;]*[m|K]/g, '')
             var err = data["stderr"]
             var code = data["exit code"]
             var listener = listeners[cmd]

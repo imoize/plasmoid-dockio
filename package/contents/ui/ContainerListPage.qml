@@ -2,6 +2,7 @@ import QtQml
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls as QQC2
+import org.kde.ksvg as KSvg
 import org.kde.kirigami as Kirigami
 import org.kde.plasma.extras as PlasmaExtras
 import org.kde.plasma.components as PlasmaComponents
@@ -9,6 +10,7 @@ import "../Utils.js" as Utils
 
 ColumnLayout{
     id: containerListPage
+    spacing: 0
 
     property alias view: containerListView
     property alias model: containerListView.model
@@ -111,6 +113,71 @@ ColumnLayout{
                         else if (error !== "") return "dockio-error";
                         else return "dockio-icon";
                     }
+                }
+            }
+        }
+    }
+
+    KSvg.SvgItem {
+        Layout.fillWidth: true
+        Layout.topMargin: 0
+        Layout.bottomMargin: 0
+        visible: cfg.showStatusBar && dockerEnable
+        imagePath: "widgets/line"
+        elementId: "horizontal-line"
+    }
+
+    Rectangle {
+        id: mainStatusBar
+        Layout.fillWidth: true
+        Layout.fillHeight: true
+        Layout.margins: Kirigami.Units.smallSpacing
+        visible: cfg.showStatusBar && dockerEnable
+        height: mainStatusBarContent.height
+        color: "transparent"
+        bottomLeftRadius: 5
+        bottomRightRadius: 5
+
+        RowLayout {
+            id: mainStatusBarContent
+            anchors.verticalCenter: parent.verticalCenter
+            ColumnLayout {
+            spacing: 1
+
+                PlasmaComponents.Label {
+                    text: i18n("Images: ") + dockerCommand.infoArray.Images
+                    font.pixelSize: Kirigami.Theme.smallFont.pixelSize
+                }
+
+                PlasmaComponents.Label {
+                    text: i18n("Containers: ") + dockerCommand.infoArray.Containers
+                    font.pixelSize: Kirigami.Theme.smallFont.pixelSize
+                }
+            }
+
+            ColumnLayout {
+                spacing: 1
+
+                Item { 
+                    Layout.fillHeight: true
+                }
+
+                PlasmaComponents.Label {
+                    text: i18n("Running: ") + dockerCommand.infoArray.ContainersRunning
+                    font.pixelSize: Kirigami.Theme.smallFont.pixelSize
+                }
+            }
+
+            ColumnLayout {
+                spacing: 1
+
+                Item { 
+                    Layout.fillHeight: true
+                }
+
+                PlasmaComponents.Label {
+                    text: i18n("Stopped: ") + dockerCommand.infoArray.ContainersStopped
+                    font.pixelSize: Kirigami.Theme.smallFont.pixelSize
                 }
             }
         }

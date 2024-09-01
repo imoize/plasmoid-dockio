@@ -142,31 +142,6 @@ PlasmoidItem {
 
         header: stack.currentItem.header
 
-        Component {
-            id: footerComponent
-            PlasmaExtras.PlasmoidHeading {
-                RowLayout {
-                    anchors.verticalCenter: parent.verticalCenter
-
-                    Kirigami.Icon {
-                        Layout.alignment: Qt.AlignBottom
-                        source: statusIcon
-                        opacity: 0.7
-                    }
-
-                    QQC2.Label {
-                        Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
-                        Layout.fillWidth: true
-                        elide: Text.ElideRight
-                        text: statusMessage
-                        opacity: 0.7
-                    }
-                }
-            }
-        }
-
-        footer: cfg.showStatusBar ? footerComponent.createObject(parent) : null
-
         QQC2.StackView {
             id: stack
             anchors.fill: parent
