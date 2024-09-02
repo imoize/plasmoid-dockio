@@ -1,4 +1,17 @@
 
+## [v0.1.1] - 2024-09-02
+### :sparkles: New Features
+- [`f23cf89`](https://github.com/imoize/plasmoid-dockio/commit/f23cf89603c91cfc8adf350ab68e3ef94a8f7528) - **Ui**: Display total containers and image count in statusbar. *(commit by [@imoize](https://github.com/imoize))*
+
+### :bug: Bug Fixes
+- [`32c16b2`](https://github.com/imoize/plasmoid-dockio/commit/32c16b29bc82e8924280af868410516123c6959d) - Fixed highlight not removed when cursor leave window. *(commit by [@imoize](https://github.com/imoize))*
+
+### :wrench: Chores
+- [`7d9c512`](https://github.com/imoize/plasmoid-dockio/commit/7d9c512b6665992e47b0f056db09ed068c921813) - **Improvement**: Change first text to uppercase *(commit by [@imoize](https://github.com/imoize))*
+- [`35a5de8`](https://github.com/imoize/plasmoid-dockio/commit/35a5de86efee676f951d87dd0ae8b72e002d4b54) - Bump to v0.1.1 *(commit by [@imoize](https://github.com/imoize))*
+- [`9a2bc42`](https://github.com/imoize/plasmoid-dockio/commit/9a2bc42ccfa0067c16f2cdfbcdedddba136e1593) - Change url *(commit by [@imoize](https://github.com/imoize))*
+
+
 ## [v0.0.4] - 2024-08-21
 ### :bug: Bug Fixes
 - [`269655c`](https://github.com/imoize/plasma-dockio/commit/269655c2a335828d629cc3bd09da0b919e45fd20) - Resolve issue where fetch container timer might be triggered twice *(commit by [@imoize](https://github.com/imoize))*
@@ -29,3 +42,4 @@
 [v0.0.2]: https://github.com/imoize/plasma-dockio/compare/v0.0.1...v0.0.2
 [v0.0.3]: https://github.com/imoize/plasma-dockio/compare/v0.0.2...v0.0.3
 [v0.0.4]: https://github.com/imoize/plasma-dockio/compare/v0.0.3...v0.0.4
+[v0.1.1]: https://github.com/imoize/plasmoid-dockio/compare/v0.0.4...v0.1.1
