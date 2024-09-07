@@ -130,7 +130,6 @@ ColumnLayout{
     Rectangle {
         id: mainStatusBar
         Layout.fillWidth: true
-        Layout.fillHeight: true
         Layout.margins: Kirigami.Units.smallSpacing
         visible: cfg.showStatusBar && dockerEnable
         height: mainStatusBarContent.height
