@@ -1,9 +1,9 @@
-import QtQml
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls as QQC2
 import org.kde.ksvg as KSvg
 import org.kde.kirigami as Kirigami
+import org.kde.kitemmodels as KItemModels
 import org.kde.plasma.extras as PlasmaExtras
 import org.kde.plasma.components as PlasmaComponents
 import "../Utils.js" as Utils
@@ -14,6 +14,66 @@ ColumnLayout{
 
     property alias view: containerListView
     property alias model: containerListView.model
+    property string sortBy: "ContainerName"
+    property bool ascending: true
+
+    property var header: PlasmaExtras.PlasmoidHeading {
+
+        contentItem: RowLayout {
+            spacing: 0
+            
+            enabled: containerModel.count > 0
+
+            PlasmaComponents.ToolButton {
+                id: sortButton
+                property var sortable: [["containerName", "Container Name", "view-sort-ascending-name", "view-sort-descending-name"]]
+                icon.name: sortButton.sortable[0][ascending ? 2 : 3]
+                onClicked: {
+                    ascending = !ascending
+                    var sortBy = sortable[0][0]
+                    if (filterModel) {
+                        filterModel.sortRoleName = sortBy
+                        filterModel.sortOrder = ascending ? Qt.AscendingOrder : Qt.DescendingOrder
+                    }
+                }
+
+                display: QQC2.AbstractButton.IconOnly
+                PlasmaComponents.ToolTip {
+                    text: i18n(sortButton.sortable[0][1] + (ascending ? "" : "(Descending)"))
+                }
+            }
+
+            PlasmaExtras.SearchField {
+                id: filter
+                Layout.fillWidth: true
+                // focus: !Kirigami.InputMethod.willShowOnActive
+            }
+            
+            PlasmaComponents.ToolButton {
+                text: i18n("Refresh")
+                icon.name: Qt.resolvedUrl("icons/dockio-refresh.svg")
+                onClicked: {
+                    dockerCommand.fetchContainers.get();
+                    fetchTimer.restart();
+                    startProgressBar();
+                }
+                display: QQC2.AbstractButton.IconOnly
+                PlasmaComponents.ToolTip{ text: parent.text }
+            }
+        }
+    }
+
+    model: KItemModels.KSortFilterProxyModel {
+        id: filterModel
+        sourceModel: containerModel
+        filterRoleName: "containerName"
+        filterRegularExpression: RegExp(filter.text, "i")
+        filterCaseSensitivity: Qt.CaseInsensitive
+        sortCaseSensitivity: Qt.CaseInsensitive
+        sortRoleName: sortBy
+        recursiveFilteringEnabled: true
+        sortOrder: ascending ? Qt.AscendingOrder : Qt.DescendingOrder
+    }
 
     Kirigami.InlineMessage {
         id: errorMessage
@@ -89,31 +149,23 @@ ColumnLayout{
             }
 
             delegate: ContainerItemDelegate {
-                showSeparator: index !== 0
                 width: containerListView.width
             }
 
-            Loader {
-                id: emptySearch
-
+            Kirigami.PlaceholderMessage {
                 anchors.centerIn: parent
-                width: parent.width - (Kirigami.Units.gridUnit * 4)
                 visible: containerListView.count === 0
-                asynchronous: true
-
-                sourceComponent: Kirigami.PlaceholderMessage {
-                    width: parent.width
-                    text: {
-                        if (filter.text !== "") return "No results.";
-                        else if (error !== "") return "Some error occurred.";
-                        else return "Start your docker!";
-                        }
-                    icon.name: {
-                        if (filter.text !== "") return Qt.resolvedUrl("icons/dockio-cube.svg");
-                        else if (error !== "") return Qt.resolvedUrl("icons/dockio-error.svg");
-                        else return Qt.resolvedUrl("icons/dockio-icon.svg");
+                text: {
+                    if (filter.text !== "") return "No results.";
+                    else if (error !== "") return "Some error occurred.";
+                    else return "Start your docker!";
                     }
+                icon.name: {
+                    if (filter.text !== "") return Qt.resolvedUrl("icons/dockio-cube.svg");
+                    else if (error !== "") return Qt.resolvedUrl("icons/dockio-error.svg");
+                    else return Qt.resolvedUrl("icons/dockio-icon.svg");
                 }
+
             }
         }
     }

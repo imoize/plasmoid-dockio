@@ -1,8 +1,8 @@
 import QtQuick
 import QtQuick.Layouts
-import QtQuick.Controls as QQC2
 import org.kde.kcmutils as KCM
 import org.kde.kirigami as Kirigami
+import org.kde.plasma.components as PlasmaComponents
 
 KCM.SimpleKCM {
     id: appearanceConfigPage
@@ -33,7 +33,7 @@ KCM.SimpleKCM {
             Kirigami.FormData.isSection: true
         }
 
-        QQC2.CheckBox {
+        PlasmaComponents.CheckBox {
             id: showProgressBar
 
             Kirigami.FormData.label: i18n("Enable refresh bar indicator:")
@@ -43,7 +43,7 @@ KCM.SimpleKCM {
             Kirigami.FormData.isSection: true
         }
 
-        QQC2.CheckBox {
+        PlasmaComponents.CheckBox {
             id: showStatusBar
 
             Kirigami.FormData.label: i18n("Enable status bar:")
