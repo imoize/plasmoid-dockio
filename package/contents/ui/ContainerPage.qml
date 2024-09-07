@@ -49,7 +49,7 @@ ContainerListPage {
             }
             
             PlasmaComponents.ToolButton {
-                text: i18n("Fetch Container")
+                text: i18n("Refresh")
                 icon.name: Qt.resolvedUrl("icons/dockio-refresh.svg")
                 onClicked: {
                     dockerCommand.fetchContainers.get();
