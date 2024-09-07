@@ -32,7 +32,7 @@ MouseArea {
         anchors.fill: parent
         active: compact.containsMouse
         activeFocusOnTab: true
-        source: "dockio-icon"
+        source: Qt.resolvedUrl("icons/dockio-icon.svg")
         color: {
             if ( error === "" && dockerEnable === true ) {
                 Kirigami.Theme.textColor

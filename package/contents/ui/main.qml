@@ -116,9 +116,16 @@ PlasmoidItem {
     Plasmoid.contextualActions: [
         PlasmaCore.Action {
             id: dockerAction
-            text: i18n("Start Docker Engine")
-            icon.name: "dockio-start"
             property string command: "startDocker"
+            property string iconName: "dockio-start"
+            text: i18n("Start Docker Engine")
+            icon.name: {
+                if (iconName === "dockio-start") {
+                    return Qt.resolvedUrl("icons/dockio-start.svg") // ship-icon
+                } else if (iconName === "dockio-stop") {
+                    return Qt.resolvedUrl("icons/dockio-stop.svg") // ship-icon
+                }
+            }
             onTriggered: {
                 if (command === "startDocker") {
                     Utils.commands["startDocker"].run();

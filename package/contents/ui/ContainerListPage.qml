@@ -19,7 +19,7 @@ ColumnLayout{
         id: errorMessage
         width: parent.width
         type: Kirigami.MessageType.Error
-        icon.name: "dockio-error"
+        icon.name: Qt.resolvedUrl("icons/dockio-error.svg")
         text: main.error
         visible: main.error != ""
         actions: Kirigami.Action {
@@ -32,7 +32,7 @@ ColumnLayout{
     }
 
     // Experimental: Progress Bar
-    QQC2.ProgressBar {
+    PlasmaComponents.ProgressBar {
         id: progressBar
         visible: cfg.showProgressBar && dockerEnable && containerListView.count !== 0
         topInset: 0
@@ -109,9 +109,9 @@ ColumnLayout{
                         else return "Start your docker!";
                         }
                     icon.name: {
-                        if (filter.text !== "") return "dockio-cube";
-                        else if (error !== "") return "dockio-error";
-                        else return "dockio-icon";
+                        if (filter.text !== "") return Qt.resolvedUrl("icons/dockio-cube.svg");
+                        else if (error !== "") return Qt.resolvedUrl("icons/dockio-error.svg");
+                        else return Qt.resolvedUrl("icons/dockio-icon.svg");
                     }
                 }
             }
