@@ -121,9 +121,9 @@ PlasmoidItem {
             text: i18n("Start Docker Engine")
             icon.name: {
                 if (iconName === "dockio-start") {
-                    return Qt.resolvedUrl("icons/dockio-start.svg") // ship-icon
+                    return Qt.resolvedUrl("icons/dockio-start.svg")
                 } else if (iconName === "dockio-stop") {
-                    return Qt.resolvedUrl("icons/dockio-stop.svg") // ship-icon
+                    return Qt.resolvedUrl("icons/dockio-stop.svg")
                 }
             }
             onTriggered: {
@@ -152,7 +152,7 @@ PlasmoidItem {
         QQC2.StackView {
             id: stack
             anchors.fill: parent
-            initialItem: ContainerPage {
+            initialItem: ContainerListPage {
             }
             Connections {
                 target: main
