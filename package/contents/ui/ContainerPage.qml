@@ -23,7 +23,7 @@ ContainerListPage {
             
             enabled: containerModel.count > 0
 
-            QQC2.ToolButton {
+            PlasmaComponents.ToolButton {
                 id: sortButton
                 property var sortable: [["containerName", "Container Name", "view-sort-ascending-name", "view-sort-descending-name"]]
                 icon.name: sortButton.sortable[0][ascending ? 2 : 3]
@@ -42,15 +42,15 @@ ContainerListPage {
                 }
             }
 
-            Kirigami.SearchField {
+            PlasmaExtras.SearchField {
                 id: filter
                 Layout.fillWidth: true
                 // focus: !Kirigami.InputMethod.willShowOnActive
             }
             
-            QQC2.ToolButton {
+            PlasmaComponents.ToolButton {
                 text: i18n("Fetch Container")
-                icon.name: "dockio-refresh"
+                icon.name: Qt.resolvedUrl("icons/dockio-refresh.svg")
                 onClicked: {
                     dockerCommand.fetchContainers.get();
                 }

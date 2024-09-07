@@ -141,7 +141,7 @@ function statDockerCallback(resCode) {
 function updateDockerAction(text, iconName, command) {
     if (typeof dockerAction !== "undefined") {
         dockerAction.text = i18n(text);
-        dockerAction.icon.name = iconName;
+        dockerAction.iconName = iconName;
         dockerAction.command = command;
     }
 }

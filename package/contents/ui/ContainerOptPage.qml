@@ -25,7 +25,7 @@ ColumnLayout {
             spacing: 0
             anchors.fill: parent
 
-            QQC2.Label {
+            PlasmaComponents.Label {
                 id: containerNameLabel
                 leftPadding: Kirigami.Units.smallSpacing
                 text: "Container: " + containerName
@@ -33,10 +33,10 @@ ColumnLayout {
                 // elide: Text.ElideRight
                 font.bold: true
             }
-            QQC2.ToolButton {
+            PlasmaComponents.ToolButton {
                 id: inspectToolButton
                 text: i18n("Inspect")
-                icon.name: "dockio-inspect"
+                icon.name: Qt.resolvedUrl("icons/dockio-inspect.svg")
                 onClicked: {
                     Utils.commands["inspectContainer"].run(containerId, containerName);
                     containerInfoText.text = "";
