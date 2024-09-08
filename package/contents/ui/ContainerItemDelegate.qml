@@ -12,6 +12,9 @@ PlasmaComponents.ItemDelegate {
     height: Math.max(label.height, Math.round(Kirigami.Units.gridUnit * 1.6)) + 2 * Kirigami.Units.smallSpacing
     enabled: true
 
+    property alias contextMenuButton: contextMenuButton
+    property var contextMenu: null
+
     signal toOptPage(string ids, string name, string info)
 
     onToOptPage: (ids, name, info) => {
@@ -20,6 +23,38 @@ PlasmaComponents.ItemDelegate {
             containerName: name,
             containerInfo: info
         });
+    }
+
+    function createContextMenu(containerId, containerName) {
+        if (contextMenu === null) {
+            var component = Qt.createComponent("./components/ContextMenu.qml");
+            contextMenu = component.createObject(contextMenuButton);
+            contextMenuButton.checked = true;
+            contextMenu.containerId = containerId;
+            contextMenu.containerName = containerName;
+            contextMenu.open();
+            if (contextMenu !== null) {
+                contextMenu.closeContextMenu.connect(destroyContextMenu);
+            }
+        }
+    }
+
+    function destroyContextMenu() {
+        if (contextMenu !== null) {
+            contextMenu.destroy();
+            contextMenu = null;
+        }
+    }
+
+    Connections {
+        target: main
+        function onExpandedChanged() {
+            if (!main.expanded) {
+                destroyContextMenu();
+            } else if (main.expanded) {
+                contextMenuButton.checked = false;
+            }
+        }
     }
 
     MouseArea {
@@ -155,12 +190,29 @@ PlasmaComponents.ItemDelegate {
 
             PlasmaComponents.ToolButton {
                 id: deleteToolButton
+                visible: !cfg.moveDeleteButton
                 text: i18n("Delete")
                 icon.name: Qt.resolvedUrl("icons/dockio-trash.svg")
-                onClicked: Utils.commands["deleteContainer"].run(containerId, containerName);
+                onClicked: containerListPage.createActionsDialog(containerId, containerName, "delete");
 
                 PlasmaComponents.ToolTip{ text: parent.text }
                 display:QQC2.AbstractButton.IconOnly
+            }
+
+            PlasmaComponents.ToolButton {
+                id: contextMenuButton
+                checkable: true
+                text: i18n("More")
+                icon.name: Qt.resolvedUrl("icons/dockio-option.svg")
+
+                onClicked: {
+                    createContextMenu(containerId, containerName);
+                }
+
+                display: QQC2.AbstractButton.IconOnly
+                PlasmaComponents.ToolTip {
+                    text: parent.text
+                }
             }
         }
     }

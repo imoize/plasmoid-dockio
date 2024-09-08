@@ -9,6 +9,7 @@ KCM.SimpleKCM {
 
     property alias cfg_showProgressBar : showProgressBar.checked
     property alias cfg_showStatusBar : showStatusBar.checked
+    property alias cfg_moveDeleteButton : moveDeleteButton.checked
     
     ColumnLayout {
         id: infoAppearanceMessage
@@ -37,6 +38,16 @@ KCM.SimpleKCM {
             id: showProgressBar
 
             Kirigami.FormData.label: i18n("Enable refresh bar indicator:")
+        }
+
+        Item {
+            Kirigami.FormData.isSection: true
+        }
+
+        PlasmaComponents.CheckBox {
+            id: moveDeleteButton
+
+            Kirigami.FormData.label: i18n("Move delete button to context menu:")
         }
 
         Item {
