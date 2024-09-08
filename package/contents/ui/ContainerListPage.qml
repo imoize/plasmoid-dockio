@@ -16,6 +16,48 @@ ColumnLayout{
     property alias model: containerListView.model
     property string sortBy: "ContainerName"
     property bool ascending: true
+    property var actionsDialog: null
+
+    function createActionsDialog(containerId, containerName, action) {
+        if (actionsDialog === null) {
+            var component = Qt.createComponent("./components/ActionsDialog.qml");
+            actionsDialog = component.createObject(parent);
+            actionsDialog.containerId = containerId;
+            actionsDialog.containerName = containerName;
+            actionsDialog.action = action;
+            if (action === "delete") {
+                actionsDialog.standardButtons = QQC2.Dialog.Yes | QQC2.Dialog.No;
+            }
+            if (actionsDialog !== null) {
+                actionsDialog.closeActionsDialog.connect(destroyActionsDialog);
+                actionsDialog.doActions.connect(doActionsHandler);
+            }
+        }
+    }
+
+    function destroyActionsDialog() {
+        if (actionsDialog !== null) {
+            actionsDialog.destroy();
+            actionsDialog = null;
+        }
+    }
+
+    function doActionsHandler(containerId, containerName, action) {
+        if (action === "delete") {
+            Utils.commands["deleteContainer"].run(containerId, containerName);
+        }
+    }
+
+    Connections {
+        target: main
+        function onExpandedChanged() {
+            if (main.expanded) {
+                destroyActionsDialog();
+            } else if (!main.expanded) {
+                destroyActionsDialog();
+            }
+        }
+    }
 
     property var header: PlasmaExtras.PlasmoidHeading {
 
