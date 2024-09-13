@@ -1,14 +1,15 @@
 import QtQuick
 import QtQuick.Layouts
-import QtQuick.Controls as QQC2
 import org.kde.kcmutils as KCM
 import org.kde.kirigami as Kirigami
+import org.kde.plasma.components as PlasmaComponents
 
 KCM.SimpleKCM {
     id: appearanceConfigPage
 
     property alias cfg_showProgressBar : showProgressBar.checked
     property alias cfg_showStatusBar : showStatusBar.checked
+    property alias cfg_moveDeleteButton : moveDeleteButton.checked
     
     ColumnLayout {
         id: infoAppearanceMessage
@@ -33,7 +34,7 @@ KCM.SimpleKCM {
             Kirigami.FormData.isSection: true
         }
 
-        QQC2.CheckBox {
+        PlasmaComponents.CheckBox {
             id: showProgressBar
 
             Kirigami.FormData.label: i18n("Enable refresh bar indicator:")
@@ -43,7 +44,17 @@ KCM.SimpleKCM {
             Kirigami.FormData.isSection: true
         }
 
-        QQC2.CheckBox {
+        PlasmaComponents.CheckBox {
+            id: moveDeleteButton
+
+            Kirigami.FormData.label: i18n("Move delete button to context menu:")
+        }
+
+        Item {
+            Kirigami.FormData.isSection: true
+        }
+
+        PlasmaComponents.CheckBox {
             id: showStatusBar
 
             Kirigami.FormData.label: i18n("Enable status bar:")

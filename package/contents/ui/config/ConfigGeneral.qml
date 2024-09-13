@@ -3,6 +3,7 @@ import QtQuick.Layouts
 import QtQuick.Controls as QQC2
 import org.kde.kcmutils as KCM
 import org.kde.kirigami as Kirigami
+import org.kde.plasma.components as PlasmaComponents
 
 KCM.SimpleKCM {
     id: generalConfigPage
@@ -12,6 +13,7 @@ KCM.SimpleKCM {
     property alias cfg_useNotif: useNotif.checked
     property alias cfg_fetchOnExpand: fetchOnExpand.checked
     property alias cfg_fetchOnStart: fetchOnStartup.checked
+    property alias cfg_terminalCommand: terminalCommand.text
     property alias cfg_debug: debug.checked
 
     ColumnLayout {
@@ -63,7 +65,7 @@ KCM.SimpleKCM {
             Kirigami.FormData.isSection: true
         }
 
-        QQC2.CheckBox {
+        PlasmaComponents.CheckBox {
             id: useNotif
 
             Kirigami.FormData.label: i18n("Enable Notifications:")
@@ -73,13 +75,13 @@ KCM.SimpleKCM {
             Kirigami.FormData.isSection: true
         }
 
-        QQC2.CheckBox {
+        PlasmaComponents.CheckBox {
             id: fetchOnExpand
 
             Kirigami.FormData.label: i18n("Fetch on expand:")
         }
 
-        QQC2.CheckBox {
+        PlasmaComponents.CheckBox {
             id: fetchOnStartup
 
             Kirigami.FormData.label: i18n("Fetch on startup:")
@@ -89,7 +91,18 @@ KCM.SimpleKCM {
             Kirigami.FormData.isSection: true
         }
 
-        QQC2.CheckBox {
+        PlasmaComponents.TextField {
+            id: terminalCommand
+            Layout.preferredWidth: Kirigami.Units.gridUnit * 12
+
+            Kirigami.FormData.label: i18n("Terminal Command:")
+        }
+
+        Item {
+            Kirigami.FormData.isSection: true
+        }
+
+        PlasmaComponents.CheckBox {
             id: debug
 
             Kirigami.FormData.label: i18n("Debug:")
