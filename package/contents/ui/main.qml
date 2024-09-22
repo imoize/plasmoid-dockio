@@ -50,7 +50,7 @@ PlasmoidItem {
         id: notif
         componentName: "dockio"
         eventId: "sound"
-        iconName: "dockio-icon"
+        // iconName: "dockio-icon"
         title: notifTitle
         text: notifText
     }
@@ -116,9 +116,16 @@ PlasmoidItem {
     Plasmoid.contextualActions: [
         PlasmaCore.Action {
             id: dockerAction
-            text: i18n("Start Docker Engine")
-            icon.name: "dockio-start"
             property string command: "startDocker"
+            property string iconName: "dockio-start"
+            text: i18n("Start Docker Engine")
+            icon.name: {
+                if (iconName === "dockio-start") {
+                    return Qt.resolvedUrl("icons/dockio-start.svg")
+                } else if (iconName === "dockio-stop") {
+                    return Qt.resolvedUrl("icons/dockio-stop.svg")
+                }
+            }
             onTriggered: {
                 if (command === "startDocker") {
                     Utils.commands["startDocker"].run();
@@ -145,7 +152,7 @@ PlasmoidItem {
         QQC2.StackView {
             id: stack
             anchors.fill: parent
-            initialItem: ContainerPage {
+            initialItem: ContainerListPage {
             }
             Connections {
                 target: main

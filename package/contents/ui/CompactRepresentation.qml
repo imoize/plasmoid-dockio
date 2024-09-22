@@ -1,9 +1,5 @@
 import QtQuick
-import QtQuick.Layouts
-import org.kde.plasma.plasmoid
 import org.kde.kirigami as Kirigami
-import org.kde.plasma.core as PlasmaCore
-import org.kde.plasma.components as PlasmaComponents
 import "../Utils.js" as Utils
 
 MouseArea {
@@ -32,7 +28,7 @@ MouseArea {
         anchors.fill: parent
         active: compact.containsMouse
         activeFocusOnTab: true
-        source: "dockio-icon"
+        source: Qt.resolvedUrl("icons/dockio-icon.svg")
         color: {
             if ( error === "" && dockerEnable === true ) {
                 Kirigami.Theme.textColor
