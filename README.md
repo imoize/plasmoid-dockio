@@ -3,16 +3,18 @@
 Control your docker containers from plasma applet.
 
 > [!NOTE]
-> This extension use custom icon, you need to [copy](#icons) contents from icons folder to your theme or local icons folder.
->
 > To use the plasmoid widget effectively, it is essential to run Docker without requiring sudo privileges.
 
 ## Features
 
-* List all available containers
-* Start, Stop, Restart and Delete containers
-* Show containers info
-* Inspect containers
+- [X] Start / Stop Docker from applet
+- [X] List all available containers
+- [X] Start, Stop, Restart and Delete containers
+- [X] Show containers info
+- [X] Inspect containers
+- [X] Container logs shortcut
+- [X] Exec container shortcut
+- [ ] Remote Docker (To do)
 
 ## Screenshots
 
@@ -29,23 +31,26 @@ sudo pacman -S curl kdeplasma-addons
 
 ## Installation
 
-### KDE Store
+### KDE Store (Recommended)
 
 [Store link](https://store.kde.org/p/2185626)
+
+1. Right click on the desktop
+2. Click on "Enter Edit Mode"
+3. Click on "Add Widgets"
+4. Click on "Get New Widgets"
+5. Click on "Download New Plasma Widgets"
+6. Search for "Dockio"
+7. Click on "Install" and you're done!
+
+Go to Configure System Tray > Entries > System Services then choose "Show when relevant" or "Always shown"
 
 ### Build it Yourself
 
 ```bash
-git clone https://github.com/imoize/plasmoid-dockio.git dockio
-cd dockio
+git clone https://github.com/imoize/plasmoid-dockio.git
+cd plasmoid-dockio
 kpackagetool6 -t Plasma/Applet -i package
-```
-
-### Icons
-
-```bash
-mkdir -p ~/.local/share/icons/hicolor/scalable/status
-cp -r ./icons/* ~/.local/share/icons/hicolor/scalable/status/
 ```
 
 Restart plasmashell
