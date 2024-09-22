@@ -50,7 +50,7 @@ PlasmoidItem {
         id: notif
         componentName: "dockio"
         eventId: "sound"
-        iconName: "dockio-icon"
+        // iconName: "dockio-icon"
         title: notifTitle
         text: notifText
     }

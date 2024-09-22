@@ -14,6 +14,8 @@ function errorRaised(err, message, icon) {
 
 //Util functions
 function notificationInstall() {
+    let iconspath = "~/.local/share/icons/hicolor/scalable/status/"
+    let iconssrc = "~/.local/share/plasma/plasmoids/org.kde.plasma.dockio/contents/ui/icons/dockio-icon.svg"
     let notifypath = "~/.local/share/knotifications6/dockio.notifyrc"
     let notifycontent = `
 [Global]
@@ -27,6 +29,8 @@ Action=Popup|Sound
 Sound=message-new-instant.ogg`
     dockerCommand.executable.exec("mkdir -p ~/.local/share/knotifications6/", (_, _, _, _) => { })
     dockerCommand.executable.exec("echo \'" + notifycontent + "\' > " + notifypath, (_, _, _, _) => { })
+    dockerCommand.executable.exec("mkdir -p " + iconspath, (_, _, _, _) => { })
+    dockerCommand.executable.exec("cp -r " + iconssrc + " " + iconspath, (_, _, _, _) => { })
 }
 
 function invokeDelayTimerCallback(callback) {
