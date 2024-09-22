@@ -1,4 +1,33 @@
 
+## [v0.2.4] - 2024-09-22
+### :boom: BREAKING CHANGES
+- due to [`92ef409`](https://github.com/imoize/plasmoid-dockio/commit/92ef4091b70ed03370f2d935ecb67d06ec1026da) - Include all icons in package. *(commit by [@imoize](https://github.com/imoize))*:
+
+  No more installation of icon pack separately.
+
+- due to [`d77a882`](https://github.com/imoize/plasmoid-dockio/commit/d77a882ac89d246d0d0215627209434517d2c77e) - Minor refactor. *(commit by [@imoize](https://github.com/imoize))*:
+
+  Refactor may affect app functionality. Reinstall maybe required.
+
+
+### :sparkles: New Features
+- [`5d4551a`](https://github.com/imoize/plasmoid-dockio/commit/5d4551ae1f9f70619a9c9f066546b8fae4e5ad00) - Add shortcut for exec and log. *(commit by [@imoize](https://github.com/imoize))*
+- [`4c0eb21`](https://github.com/imoize/plasmoid-dockio/commit/4c0eb21beeb671f60f619f4acf2a4d1c32666e8e) - Add delete confirmation dialog. *(commit by [@imoize](https://github.com/imoize))*
+
+### :bug: Bug Fixes
+- [`f6570c4`](https://github.com/imoize/plasmoid-dockio/commit/f6570c4bd1e1541925abb45fe96827364c8b8284) - **Ui**: Fixed statusbar height if no container listed. *(commit by [@imoize](https://github.com/imoize))*
+- [`b9aed5c`](https://github.com/imoize/plasmoid-dockio/commit/b9aed5cc19606373cf314d57a8d1337ec1f5ca24) - Fixed progress bar and fetch timer should restore to initial value. *(commit by [@imoize](https://github.com/imoize))*
+- [`23106ca`](https://github.com/imoize/plasmoid-dockio/commit/23106cae049daa9c6422f64c4dd77f45ec131631) - Notification icon missing. *(commit by [@imoize](https://github.com/imoize))*
+
+### :recycle: Refactors
+- [`92ef409`](https://github.com/imoize/plasmoid-dockio/commit/92ef4091b70ed03370f2d935ecb67d06ec1026da) - **Ui**: Include all icons in package. *(commit by [@imoize](https://github.com/imoize))*
+- [`d77a882`](https://github.com/imoize/plasmoid-dockio/commit/d77a882ac89d246d0d0215627209434517d2c77e) - Minor refactor. *(commit by [@imoize](https://github.com/imoize))*
+
+### :wrench: Chores
+- [`25bae9c`](https://github.com/imoize/plasmoid-dockio/commit/25bae9c67292aa994cd5ddee5c39bf6fc7648401) - **UI**: Rename "Fetch Container" to "Refresh". *(commit by [@imoize](https://github.com/imoize))*
+- [`61d9d89`](https://github.com/imoize/plasmoid-dockio/commit/61d9d8905611f7f67f9c2b2d6337d78cf6a4f23e) - Bump to v0.2.4 *(commit by [@imoize](https://github.com/imoize))*
+
+
 ## [v0.1.1] - 2024-09-02
 ### :sparkles: New Features
 - [`f23cf89`](https://github.com/imoize/plasmoid-dockio/commit/f23cf89603c91cfc8adf350ab68e3ef94a8f7528) - **Ui**: Display total containers and image count in statusbar. *(commit by [@imoize](https://github.com/imoize))*
@@ -43,3 +72,4 @@
 [v0.0.3]: https://github.com/imoize/plasma-dockio/compare/v0.0.2...v0.0.3
 [v0.0.4]: https://github.com/imoize/plasma-dockio/compare/v0.0.3...v0.0.4
 [v0.1.1]: https://github.com/imoize/plasmoid-dockio/compare/v0.0.4...v0.1.1
+[v0.2.4]: https://github.com/imoize/plasmoid-dockio/compare/v0.1.1...v0.2.4
