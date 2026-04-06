@@ -194,7 +194,7 @@ ColumnLayout{
                 width: containerListView.width
             }
 
-            Kirigami.PlaceholderMessage {
+            PlasmaExtras.PlaceholderMessage {
                 anchors.centerIn: parent
                 visible: containerListView.count === 0
                 text: {
@@ -202,11 +202,6 @@ ColumnLayout{
                     else if (error !== "") return "Some error occurred.";
                     else return "Start your docker!";
                     }
-                icon.name: {
-                    if (filter.text !== "") return Qt.resolvedUrl("icons/dockio-cube.svg");
-                    else if (error !== "") return Qt.resolvedUrl("icons/dockio-error.svg");
-                    else return Qt.resolvedUrl("icons/dockio-icon.svg");
-                }
 
             }
         }
