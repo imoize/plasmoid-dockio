@@ -4,7 +4,6 @@ import QtQuick.Controls as QQC2
 import org.kde.ksvg as KSvg
 import org.kde.kirigami as Kirigami
 import org.kde.kitemmodels as KItemModels
-import org.kde.plasma.extras as PlasmaExtras
 import org.kde.plasma.components as PlasmaComponents
 import "../Utils.js" as Utils
 
@@ -59,9 +58,41 @@ ColumnLayout{
         }
     }
 
-    property var header: PlasmaExtras.PlasmoidHeading {
 
-        contentItem: RowLayout {
+
+    model: KItemModels.KSortFilterProxyModel {
+        id: filterModel
+        sourceModel: containerModel
+        filterRoleName: "containerName"
+        filterRegularExpression: RegExp(filter.text, "i")
+        filterCaseSensitivity: Qt.CaseInsensitive
+        sortCaseSensitivity: Qt.CaseInsensitive
+        sortRoleName: sortBy
+        recursiveFilteringEnabled: true
+        sortOrder: ascending ? Qt.AscendingOrder : Qt.DescendingOrder
+    }
+
+    // Header item inside the layout
+    Item {
+        id: headerItem
+        Layout.fillWidth: true
+        implicitHeight: headerLayout.implicitHeight + Kirigami.Units.smallSpacing * 2
+        
+        Rectangle {
+            anchors.fill: parent
+            color: Kirigami.Theme.backgroundColor
+            opacity: 0.8
+        }
+        
+        RowLayout {
+            id: headerLayout
+            anchors {
+                left: parent.left
+                right: parent.right
+                verticalCenter: parent.verticalCenter
+                leftMargin: Kirigami.Units.smallSpacing
+                rightMargin: Kirigami.Units.smallSpacing
+            }
             spacing: 0
             
             enabled: containerModel.count > 0
@@ -85,7 +116,7 @@ ColumnLayout{
                 }
             }
 
-            PlasmaExtras.SearchField {
+            Kirigami.SearchField {
                 id: filter
                 Layout.fillWidth: true
                 // focus: !Kirigami.InputMethod.willShowOnActive
@@ -93,7 +124,7 @@ ColumnLayout{
             
             PlasmaComponents.ToolButton {
                 text: i18n("Refresh")
-                icon.name: Qt.resolvedUrl("icons/dockio-refresh.svg")
+                icon.source: Qt.resolvedUrl("icons/dockio-refresh.svg")
                 onClicked: {
                     dockerCommand.fetchContainers.get();
                     fetchTimer.restart();
@@ -105,23 +136,11 @@ ColumnLayout{
         }
     }
 
-    model: KItemModels.KSortFilterProxyModel {
-        id: filterModel
-        sourceModel: containerModel
-        filterRoleName: "containerName"
-        filterRegularExpression: RegExp(filter.text, "i")
-        filterCaseSensitivity: Qt.CaseInsensitive
-        sortCaseSensitivity: Qt.CaseInsensitive
-        sortRoleName: sortBy
-        recursiveFilteringEnabled: true
-        sortOrder: ascending ? Qt.AscendingOrder : Qt.DescendingOrder
-    }
-
     Kirigami.InlineMessage {
         id: errorMessage
         width: parent.width
         type: Kirigami.MessageType.Error
-        icon.name: Qt.resolvedUrl("icons/dockio-error.svg")
+        icon.source: Qt.resolvedUrl("icons/dockio-error.svg")
         text: main.error
         visible: main.error != ""
         actions: Kirigami.Action {
@@ -174,7 +193,9 @@ ColumnLayout{
             id: containerListView
 
             model: containerModel
-            highlight: PlasmaExtras.Highlight { }
+            highlight: Rectangle {
+                color: Kirigami.Theme.hoverColor
+            }
             highlightMoveDuration: 0
             highlightResizeDuration: 0
             currentIndex: -1
@@ -194,20 +215,35 @@ ColumnLayout{
                 width: containerListView.width
             }
 
-            Kirigami.PlaceholderMessage {
+            ColumnLayout {
                 anchors.centerIn: parent
+                width: parent.width - Kirigami.Units.gridUnit * 2
                 visible: containerListView.count === 0
-                text: {
-                    if (filter.text !== "") return "No results.";
-                    else if (error !== "") return "Some error occurred.";
-                    else return "Start your docker!";
+                spacing: Kirigami.Units.largeSpacing
+
+                Kirigami.Icon {
+                    Layout.alignment: Qt.AlignHCenter
+                    Layout.preferredWidth: Kirigami.Units.iconSizes.huge
+                    Layout.preferredHeight: Kirigami.Units.iconSizes.huge
+                    source: {
+                        if (filter.text !== "") return Qt.resolvedUrl("icons/dockio-cube.svg");
+                        else if (error !== "") return Qt.resolvedUrl("icons/dockio-error.svg");
+                        else return Qt.resolvedUrl("icons/dockio-icon.svg");
                     }
-                icon.name: {
-                    if (filter.text !== "") return Qt.resolvedUrl("icons/dockio-cube.svg");
-                    else if (error !== "") return Qt.resolvedUrl("icons/dockio-error.svg");
-                    else return Qt.resolvedUrl("icons/dockio-icon.svg");
                 }
 
+                PlasmaComponents.Label {
+                    Layout.fillWidth: true
+                    horizontalAlignment: Text.AlignHCenter
+                    wrapMode: Text.WordWrap
+                    font.bold: true
+                    font.pointSize: Kirigami.Theme.defaultFont.pointSize * 1.2
+                    text: {
+                        if (filter.text !== "") return i18n("No results.");
+                        else if (error !== "") return i18n("Some error occurred.");
+                        else return i18n("Start your docker!");
+                    }
+                }
             }
         }
     }

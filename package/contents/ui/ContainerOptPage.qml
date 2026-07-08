@@ -2,7 +2,6 @@ import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls as QQC2
 import org.kde.kirigami as Kirigami
-import org.kde.plasma.extras as PlasmaExtras
 import org.kde.plasma.components as PlasmaComponents
 import "../Utils.js" as Utils
 
@@ -17,13 +16,28 @@ ColumnLayout {
     property string containerInfo: ""
     property alias containerInspectText: containerInspectText
 
-    property PlasmaExtras.PlasmoidHeading header: PlasmaExtras.PlasmoidHeading {
-        background.visible: false
+    // Header item inside the layout
+    Item {
+        id: headerItem
+        Layout.fillWidth: true
+        implicitHeight: statsToolbar.implicitHeight + Kirigami.Units.smallSpacing * 2
+
+        Rectangle {
+            anchors.fill: parent
+            color: Kirigami.Theme.backgroundColor
+            opacity: 0.8
+        }
 
         RowLayout {
             id: statsToolbar
             spacing: 0
-            anchors.fill: parent
+            anchors {
+                left: parent.left
+                right: parent.right
+                verticalCenter: parent.verticalCenter
+                leftMargin: Kirigami.Units.smallSpacing
+                rightMargin: Kirigami.Units.smallSpacing
+            }
 
             PlasmaComponents.Label {
                 id: containerNameLabel
@@ -36,7 +50,7 @@ ColumnLayout {
             PlasmaComponents.ToolButton {
                 id: inspectToolButton
                 text: i18n("Inspect")
-                icon.name: Qt.resolvedUrl("icons/dockio-inspect.svg")
+                icon.source: Qt.resolvedUrl("icons/dockio-inspect.svg")
                 onClicked: {
                     Utils.commands["inspectContainer"].run(containerId, containerName);
                     containerInfoText.text = "";

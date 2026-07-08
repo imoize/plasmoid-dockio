@@ -20,7 +20,7 @@ PlasmaComponents.Menu {
         id: execMenu
         width: Kirigami.Units.gridUnit * 7
         title: i18n("Exec")
-        icon.name: Qt.resolvedUrl("../icons/dockio-term.svg")
+        icon.source: Qt.resolvedUrl("../icons/dockio-term.svg")
         closePolicy: QQC2.Popup.CloseOnPressOutside
 
         PlasmaComponents.MenuItem {
@@ -76,7 +76,7 @@ PlasmaComponents.Menu {
 
     PlasmaComponents.MenuItem {
         text: i18n("Logs")
-        icon.name: Qt.resolvedUrl("../icons/dockio-logs.svg")
+        icon.source: Qt.resolvedUrl("../icons/dockio-logs.svg")
         onTriggered: {
             dockerCommand.executable.exec(cfg.terminalCommand + ` $SHELL -c "docker logs -f ${containerId}"`);
         }
@@ -96,7 +96,7 @@ PlasmaComponents.Menu {
         visible: cfg.moveDeleteButton
         height: visible ? undefined : 0
         text: i18n("Delete")
-        icon.name: Qt.resolvedUrl("../icons/dockio-trash.svg")
+        icon.source: Qt.resolvedUrl("../icons/dockio-trash.svg")
         onTriggered: {
             containerListPage.createActionsDialog(containerId, containerName, "delete");
         }
