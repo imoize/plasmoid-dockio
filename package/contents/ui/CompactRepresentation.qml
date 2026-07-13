@@ -1,9 +1,16 @@
 import QtQuick
+import QtQuick.Layouts
 import org.kde.kirigami as Kirigami
 import "../Utils.js" as Utils
 
 MouseArea {
     id: compact
+    
+    Layout.minimumWidth: Kirigami.Units.iconSizes.small
+    Layout.minimumHeight: Kirigami.Units.iconSizes.small
+    implicitWidth: Kirigami.Units.gridUnit
+    implicitHeight: Kirigami.Units.gridUnit
+
     property bool wasExpanded: false
     acceptedButtons: Qt.LeftButton | Qt.MiddleButton
     hoverEnabled: true

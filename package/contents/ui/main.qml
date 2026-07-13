@@ -1,11 +1,10 @@
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls as QQC2
-import org.kde.notification
+import org.kde.notification 1.0
 import org.kde.plasma.plasmoid
 import org.kde.kirigami as Kirigami
 import org.kde.plasma.core as PlasmaCore
-import org.kde.plasma.extras as PlasmaExtras
 import "../Utils.js" as Utils
 
 PlasmoidItem {
@@ -28,7 +27,7 @@ PlasmoidItem {
 
     switchWidth: Kirigami.Units.gridUnit * 5
     switchHeight: Kirigami.Units.gridUnit * 5
-    Plasmoid.status: (containerModel.count || error !== "") ? PlasmaCore.Types.ActiveStatus : PlasmaCore.Types.PassiveStatus
+    Plasmoid.status: (containerModel.count || error !== "") ? Plasmoid.ActiveStatus : Plasmoid.PassiveStatus
     toolTipMainText: i18n("Dockio")
     toolTipSubText: statusMessage
     Component.onCompleted: () => {
@@ -125,6 +124,7 @@ PlasmoidItem {
                 } else if (iconName === "dockio-stop") {
                     return Qt.resolvedUrl("icons/dockio-stop.svg")
                 }
+                return ""
             }
             onTriggered: {
                 if (command === "startDocker") {
@@ -138,16 +138,13 @@ PlasmoidItem {
 
     compactRepresentation: CompactRepresentation {}
 
-    fullRepresentation: PlasmaExtras.Representation {
+    fullRepresentation: Item {
         id: dialogItem
 
         Layout.minimumWidth: Kirigami.Units.gridUnit * 24
         Layout.minimumHeight: Kirigami.Units.gridUnit * 24
         Layout.maximumWidth: Kirigami.Units.gridUnit * 80
         Layout.maximumHeight: Kirigami.Units.gridUnit * 40
-        collapseMarginsHint: true
-
-        header: stack.currentItem.header
 
         QQC2.StackView {
             id: stack

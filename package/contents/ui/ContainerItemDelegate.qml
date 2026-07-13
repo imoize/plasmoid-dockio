@@ -143,7 +143,7 @@ PlasmaComponents.ItemDelegate {
                 id: debugStartToolButton
                 visible: cfg.debug
                 text: i18n("Start")
-                icon.name: Qt.resolvedUrl("icons/dockio-start.svg")
+                icon.source: Qt.resolvedUrl("icons/dockio-start.svg")
                 onClicked: Utils.commands["startContainer"].run(containerId, containerName);
 
                 PlasmaComponents.ToolTip{ text: parent.text }
@@ -154,7 +154,7 @@ PlasmaComponents.ItemDelegate {
                 id: debugStopToolButton
                 visible: cfg.debug
                 text: i18n("Stop")
-                icon.name: Qt.resolvedUrl("icons/dockio-stop.svg")
+                icon.source: Qt.resolvedUrl("icons/dockio-stop.svg")
                 onClicked: Utils.commands["stopContainer"].run(containerId, containerName);
 
                 PlasmaComponents.ToolTip{ text: parent.text }
@@ -165,7 +165,7 @@ PlasmaComponents.ItemDelegate {
                 id: actionToolButton
                 visible: !cfg.debug
                 text: ["running", "removing", "restarting", "created"].includes(containerState) ? i18n("Stop") : i18n("Start")
-                icon.name: ["running", "removing", "restarting", "created"].includes(containerState) ? Qt.resolvedUrl("icons/dockio-stop.svg") : Qt.resolvedUrl("icons/dockio-start.svg")
+                icon.source: ["running", "removing", "restarting", "created"].includes(containerState) ? Qt.resolvedUrl("icons/dockio-stop.svg") : Qt.resolvedUrl("icons/dockio-start.svg")
                 onClicked: {
                     if (["running", "removing", "restarting", "created"].includes(containerState)) {
                         Utils.commands["stopContainer"].run(containerId, containerName);
@@ -181,7 +181,7 @@ PlasmaComponents.ItemDelegate {
             PlasmaComponents.ToolButton  {
                 id: restartToolButton
                 text: i18n("Restart")
-                icon.name: Qt.resolvedUrl("icons/dockio-refresh.svg")
+                icon.source: Qt.resolvedUrl("icons/dockio-refresh.svg")
                 onClicked: Utils.commands["restartContainer"].run(containerId, containerName);
 
                 PlasmaComponents.ToolTip{ text: parent.text }
@@ -192,7 +192,7 @@ PlasmaComponents.ItemDelegate {
                 id: deleteToolButton
                 visible: !cfg.moveDeleteButton
                 text: i18n("Delete")
-                icon.name: Qt.resolvedUrl("icons/dockio-trash.svg")
+                icon.source: Qt.resolvedUrl("icons/dockio-trash.svg")
                 onClicked: containerListPage.createActionsDialog(containerId, containerName, "delete");
 
                 PlasmaComponents.ToolTip{ text: parent.text }
@@ -203,7 +203,7 @@ PlasmaComponents.ItemDelegate {
                 id: contextMenuButton
                 checkable: true
                 text: i18n("More")
-                icon.name: Qt.resolvedUrl("icons/dockio-option.svg")
+                icon.source: Qt.resolvedUrl("icons/dockio-option.svg")
 
                 onClicked: {
                     createContextMenu(containerId, containerName);

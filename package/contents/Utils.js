@@ -156,7 +156,7 @@ function startContainerCallback(resCode, containerId, containerName) {
 
     if (resCode === "204") {
         notifMessage = "container started successfully.";
-        invokeDelayTimerCallback(dockerCommand.fetchContainers.get());
+        invokeDelayTimerCallback(() => dockerCommand.fetchContainers.get());
         notifBuild(containerName, notifMessage);
         if (cfg.debug) console.log(`Container ${containerName} started successfully.`);
     } else if (resCode === "304") {
@@ -180,7 +180,7 @@ function stopContainerCallback(resCode, containerId, containerName) {
     if (resCode === "204") {
         notifMessage = "container stopped successfully.";
         notifBuild(containerName, notifMessage);
-        invokeDelayTimerCallback(dockerCommand.fetchContainers.get());
+        invokeDelayTimerCallback(() => dockerCommand.fetchContainers.get());
         if (cfg.debug) console.log(`Container ${containerName} stopped successfully.`);
     } else if (resCode === "304") {
         errorMessage = `Container ${containerName} is already stopped.`;
@@ -202,7 +202,7 @@ function restartContainerCallback(resCode, containerId, containerName) {
 
     if (resCode === "204") {
         notifMessage = "container restarted successfully.";
-        invokeDelayTimerCallback(dockerCommand.fetchContainers.get());
+        invokeDelayTimerCallback(() => dockerCommand.fetchContainers.get());
         notifBuild(containerName, notifMessage);
         if (cfg.debug) console.log(`Container ${containerName} restarted successfully.`);
     } else if (resCode === "404") {
@@ -223,7 +223,7 @@ function deleteContainerCallback(resCode, containerId, containerName) {
 
     if (resCode === "204") {
         notifMessage = "container deleted successfully.";
-        invokeDelayTimerCallback(dockerCommand.fetchContainers.get());
+        invokeDelayTimerCallback(() => dockerCommand.fetchContainers.get());
         notifBuild(containerName, notifMessage);
         if (cfg.debug) console.log(`Container ${containerName} deleted successfully.`);
     } else if (resCode === "400") {
